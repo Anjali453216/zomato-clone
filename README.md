@@ -42,4 +42,4 @@ A responsive Zomato-inspired food delivery landing page built using HTML and CSS
 
 ## Preview
 
-<img src="https://raw.githubusercontent.com/Anjali453216/zomato-clone/main/screenshot.png" alt="Zomato Clone" width="700">
+http://127.0.0.1:3000/index.html?vscode-livepreview=true
