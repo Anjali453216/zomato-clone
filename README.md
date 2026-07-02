@@ -38,7 +38,6 @@ Anjali Yadav
 
 ---
 
-A responsive Zomato-inspired food delivery landing page built using HTML and CSS, featuring a modern UI, search section, and service cards for online ordering, dining, and nightlife exploration.
-## Preview
+A responsive Zomato-inspired food delivery landing page built using HTML and CSS, featuring a modern UI, search section, and service cards for online ordering, dining, and nightlife exploration
 
-<img src="./screenshot.png" alt="Zomato Clone" width="700">
+https://raw.githubusercontent.com/Anjali453216/zomato-clone/main/screenshot.png
