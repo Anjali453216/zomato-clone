@@ -1,263 +1,1024 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zomato - Order Food Online</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zomato Clone - Order Food Online</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins',sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        body{
-            overflow-x:hidden;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        /* Hero Section */
-        .hero{
-            width:100%;
-            height:100vh;
-            background:
-            linear-gradient(rgba(0,0,0,0.45),
-            rgba(0,0,0,0.45)),
-            url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80');
+body{
+    background:#fff;
+    color:#222;
+    overflow-x:hidden;
+}
 
-            background-size:cover;
-            background-position:center;
-        }
+/* ================= NAVBAR ================= */
 
-        /* Navbar */
-        nav{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:25px 80px;
-        }
+nav{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:10;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 7%;
+}
 
-        .brand{
-            color:white;
-            font-size:28px;
-            font-weight:700;
-        }
+.brand{
+    color:white;
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
 
-        nav ul{
-            display:flex;
-            list-style:none;
-        }
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+    align-items:center;
+}
 
-        nav ul li{
-            margin-left:30px;
-        }
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+    transition:.3s;
+}
 
-        nav ul li a{
-            color:white;
-            text-decoration:none;
-            font-size:17px;
-            transition:.3s;
-        }
+nav ul li a:hover{
+    color:#ffb3b8;
+}
 
-        nav ul li a:hover{
-            color:#ff4d5a;
-        }
+.login-btn{
+    border:1px solid white;
+    padding:8px 18px;
+    border-radius:6px;
+}
 
-        /* Center Content */
-        .content{
-            height:80%;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            color:white;
-            padding:20px;
-        }
+/* ================= HERO ================= */
 
-        .logo{
-            font-size:90px;
-            font-weight:900;
-            letter-spacing:3px;
-            text-shadow:0 5px 15px rgba(0,0,0,0.5);
-        }
+.hero{
+    min-height:700px;
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,.48),rgba(0,0,0,.55)),
+    url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1800&q=85');
+    background-size:cover;
+    background-position:center;
+}
 
-        .tagline{
-            font-size:35px;
-            margin-top:10px;
-            margin-bottom:30px;
-        }
+.content{
+    min-height:700px;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
 
-        .search-box{
-            width:700px;
-            max-width:90%;
-            display:flex;
-            background:white;
-            border-radius:12px;
-            overflow:hidden;
-            box-shadow:0 5px 20px rgba(0,0,0,0.25);
-        }
+.logo{
+    font-size:90px;
+    font-weight:900;
+    letter-spacing:3px;
+    text-shadow:0 5px 20px rgba(0,0,0,.5);
+}
 
-        .search-box input{
-            flex:1;
-            padding:18px;
-            border:none;
-            outline:none;
-            font-size:16px;
-        }
+.tagline{
+    font-size:30px;
+    font-weight:500;
+    margin:5px 0 28px;
+}
 
-        .search-box button{
-            background:#e23744;
-            color:white;
-            border:none;
-            padding:18px 30px;
-            cursor:pointer;
-            font-size:16px;
-            font-weight:600;
-        }
+/* ================= SEARCH ================= */
 
-        .search-box button:hover{
-            background:#c92d3a;
-        }
+.search-area{
+    display:flex;
+    width:760px;
+    max-width:95%;
+    height:60px;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(0,0,0,.3);
+}
 
-        /* Cards Section */
-        .cards{
-            display:flex;
-            justify-content:center;
-            gap:30px;
-            padding:60px 40px;
-            flex-wrap:wrap;
-            background:#f8f8f8;
-        }
+.location{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:0 18px;
+    color:#555;
+    border-right:1px solid #ddd;
+    min-width:190px;
+}
 
-        .card{
-            width:320px;
-            background:white;
-            border-radius:15px;
-            overflow:hidden;
-            box-shadow:0 3px 10px rgba(0,0,0,0.1);
-            transition:.3s;
-        }
+.location select{
+    border:none;
+    outline:none;
+    color:#555;
+    background:white;
+    font-size:14px;
+}
 
-        .card:hover{
-            transform:translateY(-8px);
-        }
+.search-input{
+    flex:1;
+    display:flex;
+    align-items:center;
+}
 
-        .card img{
-            width:100%;
-            height:220px;
-            object-fit:cover;
-        }
+.search-input input{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:18px;
+    font-size:15px;
+}
 
-        .card-content{
-            padding:20px;
-        }
+.search-btn{
+    width:120px;
+    border:none;
+    background:#e23744;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
 
-        .card-content h3{
-            margin-bottom:10px;
-        }
+.search-btn:hover{
+    background:#c91f2e;
+}
 
-        .card-content p{
-            color:gray;
-        }
+/* ================= SECTION ================= */
 
-        footer{
-            text-align:center;
-            padding:20px;
-            background:#1c1c1c;
-            color:white;
-        }
+section{
+    scroll-margin-top:20px;
+}
 
-        @media(max-width:768px){
+.section{
+    padding:70px 7%;
+}
 
-            nav{
-                padding:20px;
-                flex-direction:column;
-            }
+.section-title{
+    font-size:30px;
+    margin-bottom:8px;
+}
 
-            nav ul{
-                margin-top:15px;
-            }
+.section-subtitle{
+    color:#777;
+    margin-bottom:35px;
+}
 
-            .logo{
-                font-size:60px;
-            }
+/* ================= QUICK CARDS ================= */
 
-            .tagline{
-                font-size:24px;
-            }
-        }
-    </style>
+.quick-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.quick-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 15px rgba(0,0,0,.1);
+    transition:.3s;
+    cursor:pointer;
+}
+
+.quick-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.quick-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.quick-content{
+    padding:20px;
+}
+
+.quick-content h3{
+    font-size:21px;
+    margin-bottom:7px;
+}
+
+.quick-content p{
+    color:#777;
+    font-size:14px;
+}
+
+/* ================= RESTAURANTS ================= */
+
+.restaurant-section{
+    background:#fafafa;
+}
+
+.restaurant-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.restaurant{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    transition:.3s;
+    position:relative;
+}
+
+.restaurant:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 25px rgba(0,0,0,.14);
+}
+
+.restaurant-img{
+    height:210px;
+    width:100%;
+    object-fit:cover;
+}
+
+.favorite{
+    position:absolute;
+    right:14px;
+    top:14px;
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    background:white;
+    font-size:19px;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.favorite.active{
+    color:#e23744;
+}
+
+.restaurant-info{
+    padding:18px;
+}
+
+.restaurant-name{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.restaurant-name h3{
+    font-size:18px;
+}
+
+.rating{
+    background:#24963f;
+    color:white;
+    padding:4px 8px;
+    border-radius:5px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.restaurant-info p{
+    color:#777;
+    font-size:13px;
+    margin:7px 0;
+}
+
+.details{
+    display:flex;
+    justify-content:space-between;
+    color:#555;
+    font-size:12px;
+    margin-top:12px;
+}
+
+.menu-btn{
+    margin-top:15px;
+    width:100%;
+    border:none;
+    background:#e23744;
+    color:white;
+    padding:11px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.menu-btn:hover{
+    background:#c91f2e;
+}
+
+/* ================= COLLECTIONS ================= */
+
+.collection-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.collection{
+    height:250px;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+}
+
+.collection img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.collection:hover img{
+    transform:scale(1.08);
+}
+
+.collection::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+}
+
+.collection-text{
+    position:absolute;
+    bottom:18px;
+    left:18px;
+    z-index:2;
+    color:white;
+}
+
+.collection-text h3{
+    font-size:18px;
+}
+
+/* ================= APP SECTION ================= */
+
+.app-section{
+    background:#fff4f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:80px;
+    padding:70px 7%;
+}
+
+.phone{
+    font-size:130px;
+}
+
+.app-text{
+    max-width:500px;
+}
+
+.app-text h2{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.app-text p{
+    color:#666;
+    line-height:1.7;
+}
+
+.app-buttons{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+}
+
+.app-btn{
+    background:#222;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* ================= CART ================= */
+
+.cart{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:20;
+    background:#e23744;
+    color:white;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:23px;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+.cart-count{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    background:#222;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    font-size:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:100;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:400px;
+    max-width:100%;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:12px;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.modal-box h2{
+    margin-bottom:20px;
+}
+
+.modal-box input{
+    width:100%;
+    padding:13px;
+    margin:8px 0;
+    border:1px solid #ddd;
+    border-radius:7px;
+    outline:none;
+}
+
+.modal-box button{
+    width:100%;
+    padding:13px;
+    border:none;
+    background:#e23744;
+    color:white;
+    border-radius:7px;
+    margin-top:12px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#222;
+    color:white;
+    padding:45px 7%;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer p, footer a{
+    color:#aaa;
+    font-size:13px;
+    text-decoration:none;
+    line-height:2;
+}
+
+.copyright{
+    border-top:1px solid #444;
+    margin-top:30px;
+    padding-top:20px;
+    color:#888;
+    font-size:12px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    nav{
+        padding:20px;
+    }
+
+    nav ul li:nth-child(1),
+    nav ul li:nth-child(2){
+        display:none;
+    }
+
+    .logo{
+        font-size:65px;
+    }
+
+    .tagline{
+        font-size:23px;
+    }
+
+    .quick-cards,
+    .restaurant-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .collection-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .app-section{
+        gap:30px;
+    }
+
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        min-height:650px;
+    }
+
+    .content{
+        min-height:650px;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav ul{
+        gap:14px;
+    }
+
+    nav ul li a{
+        font-size:12px;
+    }
+
+    .logo{
+        font-size:50px;
+    }
+
+    .tagline{
+        font-size:19px;
+        line-height:1.4;
+    }
+
+    .search-area{
+        height:auto;
+        flex-direction:column;
+        border-radius:10px;
+    }
+
+    .location{
+        height:50px;
+        border-right:none;
+        border-bottom:1px solid #ddd;
+    }
+
+    .search-input{
+        height:55px;
+    }
+
+    .search-btn{
+        width:100%;
+        height:50px;
+    }
+
+    .section{
+        padding:45px 5%;
+    }
+
+    .section-title{
+        font-size:25px;
+    }
+
+    .quick-cards,
+    .restaurant-grid,
+    .collection-grid{
+        grid-template-columns:1fr;
+    }
+
+    .app-section{
+        flex-direction:column;
+        text-align:center;
+        padding:50px 5%;
+    }
+
+    .phone{
+        font-size:80px;
+    }
+
+    .app-buttons{
+        justify-content:center;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <section class="hero">
+<!-- ================= HERO ================= -->
 
-        <nav>
-            <div class="brand">zomato</div>
+<section class="hero" id="home">
 
-            <ul>
-                <li><a href="#">Investor Relations</a></li>
-                <li><a href="#">Add Restaurant</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Sign Up</a></li>
-            </ul>
-        </nav>
+<nav>
+    <div class="brand">zomato</div>
 
-        <div class="content">
+    <ul>
+        <li><a href="#restaurants">Restaurants</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#app">Get the App</a></li>
+        <li><a href="#" onclick="openLogin()">Login</a></li>
+        <li><a href="#" onclick="openLogin()">Sign Up</a></li>
+    </ul>
+</nav>
 
-            <h1 class="logo">zomato</h1>
+<div class="content">
 
-            <h2 class="tagline">
-                Discover the best food & drinks in your city
-            </h2>
+    <h1 class="logo">zomato</h1>
 
-            <div class="search-box">
-                <input type="text"
-                placeholder="Search for restaurants, cuisines or dishes">
-                <button>Search</button>
-            </div>
+    <h2 class="tagline">
+        Discover the best food & drinks in your city
+    </h2>
 
+    <div class="search-area">
+
+        <div class="location">
+            📍
+            <select id="location">
+                <option>Jaipur</option>
+                <option>Delhi</option>
+                <option>Mumbai</option>
+                <option>Bengaluru</option>
+                <option>Hyderabad</option>
+            </select>
         </div>
 
-    </section>
-
-    <section class="cards">
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80">
-            <div class="card-content">
-                <h3>Order Online</h3>
-                <p>Stay home and order delicious food.</p>
-            </div>
+        <div class="search-input">
+            🔍
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for restaurants, cuisines or dishes"
+                onkeyup="searchRestaurants()">
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80">
-            <div class="card-content">
-                <h3>Dining</h3>
-                <p>View the city's favourite dining venues.</p>
-            </div>
+        <button class="search-btn" onclick="searchRestaurants()">
+            Search
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= QUICK OPTIONS ================= -->
+
+<section class="section">
+
+<h2 class="section-title">Explore options</h2>
+<p class="section-subtitle">
+    Choose what you're looking for
+</p>
+
+<div class="quick-cards">
+
+    <div class="quick-card" onclick="scrollToRestaurants()">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80">
+        <div class="quick-content">
+            <h3>Order Online</h3>
+            <p>Stay home and order your favourite food.</p>
         </div>
+    </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80">
-            <div class="card-content">
-                <h3>Nightlife</h3>
-                <p>Explore the best nightlife spots.</p>
-            </div>
+    <div class="quick-card">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80">
+        <div class="quick-content">
+            <h3>Dining</h3>
+            <p>Discover the city's favourite dining places.</p>
         </div>
+    </div>
 
-    </section>
+    <div class="quick-card">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80">
+        <div class="quick-content">
+            <h3>Nightlife</h3>
+            <p>Explore popular places for an evening out.</p>
+        </div>
+    </div>
 
-    <footer>
-        © 2026 Zomato Clone | All Rights Reserved
-    </footer>
+</div>
 
-</body>
-</html>
+</section>
+
+
+<!-- ================= RESTAURANTS ================= -->
+
+<section class="section restaurant-section" id="restaurants">
+
+<h2 class="section-title">Popular restaurants</h2>
+<p class="section-subtitle">
+    Top places to eat in your city
+</p>
+
+<div class="restaurant-grid" id="restaurantGrid">
+
+    <div class="restaurant" data-search="pizza italian cafe">
+        <button class="favorite" onclick="toggleFavorite(this)">♡</button>
+
+        <img class="restaurant-img"
+        src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80">
+
+        <div class="restaurant-info">
+            <div class="restaurant-name">
+                <h3>La Pino's Pizza</h3>
+                <span class="rating">4.3 ★</span>
+            </div>
+
+            <p>Pizza • Italian • Fast Food</p>
+
+            <div class="details">
+                <span>₹400 for two</span>
+                <span>30 min</span>
+            </div>
+
+            <button class="menu-btn" onclick="addToCart('La Pino\\'s Pizza')">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+
+    <div class="restaurant" data-search="burger american fast food">
+        <button class="favorite" onclick="toggleFavorite(this)">♡</button>
+
+        <img class="restaurant-img"
+        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80">
+
+        <div class="restaurant-info">
+            <div class="restaurant-name">
+                <h3>Burger House</h3>
+                <span class="rating">4.5 ★</span>
+            </div>
+
+            <p>Burgers • American • Fast Food</p>
+
+            <div class="details">
+                <span>₹350 for two</span>
+                <span>25 min</span>
+            </div>
+
+            <button class="menu-btn" onclick="addToCart('Burger House')">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+
+    <div class="restaurant" data-search="indian north indian thali">
+        <button class="favorite" onclick="toggleFavorite(this)">♡</button>
+
+        <img class="restaurant-img"
+        src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=80">
+
+        <div class="restaurant-info">
+            <div class="restaurant-name">
+                <h3>Royal Indian Kitchen</h3>
+                <span class="rating">4.6 ★</span>
+            </div>
+
+            <p>North Indian • Thali • Biryani</p>
+
+            <div class="details">
+                <span>₹500 for two</span>
+                <span>35 min</span>
+            </div>
+
+            <button class="menu-btn" onclick="addToCart('Royal Indian Kitchen')">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+
+    <div class="restaurant" data-search="biryani hyderabadi rice">
+        <button class="favorite" onclick="toggleFavorite(this)">♡</button>
+
+        <img class="restaurant-img"
+        src="https://images.unsplash.com/photo-1563379091339-03246963d29a?auto=format&fit=crop&w=800&q=80">
+
+        <div class="restaurant-info">
+            <div class="restaurant-name">
+                <h3>Biryani Express</h3>
+                <span class="rating">4.4 ★</span>
+            </div>
+
+            <p>Biryani • Hyderabadi • Indian</p>
+
+            <div class="details">
+                <span>₹450 for two</span>
+                <span>32 min</span>
+            </div>
+
+            <button class="menu-btn" onclick="addToCart('Biryani Express')">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+
+    <div class="restaurant" data-search="chinese noodles chinese food">
+        <button class="favorite" onclick="toggleFavorite(this)">♡</button>
+
+        <img class="restaurant-img"
+        src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80">
+
+        <div class="restaurant-info">
+            <div class="restaurant-name">
+                <h3>Wok & Bowl</h3>
+                <span class="rating">4.2 ★</span>
+            </div>
+
+            <p>Chinese • Noodles • Asian</p>
+
+            <div class="details">
+                <span>₹450 for two</span>
+                <span>28 min</span>
+            </div>
+
+            <button class="menu-btn" onclick="addToCart('Wok & Bowl')">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+
+    <div class="restaurant" data-search="dessert cake sweets bakery">
+        <button class="favorite" onclick="toggleFavorite(this)">♡</button>
+
+        <img class="restaurant-img"
+        src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80">
+
+        <div class="restaurant-info">
+            <div class="restaurant-name">
+                <h3>Sweet Cravings</h3>
+                <span class="rating">4.7 ★</span>
+            </div>
+
+            <p>Desserts • Bakery • Cakes</p>
+
+            <div class="details">
+                <span>₹300 for two</span>
+                <span>20 min</span>
+            </div>
+
+            <button class="menu-btn" onclick="addToCart('Sweet Cravings')">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<p id="noResults" style="display:none;text-align:center;padding:30px;color:#777;">
+    No restaurants found. Try another search.
+</p>
+
+</section>
+
+
+<!-- ================= COLLECTIONS ================= -->
+
+<section class="section" id="collections">
+
+<h2 class="section-title">Collections</h2>
+<p class="section-subtitle">
+    Explore curated collections of restaurants
+</p>
+
+<div class="collection-grid">
+
+    <div class="collection">
+        <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=800&q=80">
+        <div class="collection-text">
+            <h3>Best of Jaipur</h3>
+        </div>
+    </div>
+
+    <div class="collection">
+        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80">
+        <div class="collection-text">
+            <h3>Trending This Week</h3>
+        </div>
+    </div>
+
+    <div class="collection">
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80">
+        <div class="collection-text">
+            <h3>Sweet Tooth</h3>
+        </div>
+    </div>
+
+    <div class="collection">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80">
+        <div class="collection-text">
+            <h3>Great Cafes</h3>
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= APP ================= -->
+
+<section class="app-section" id="app">
+
+<div class="phone">📱</div>
+
+<div class="app-text">
+
+<h2>Get the Zomato Clone App</h2>
+
+<p>
+Experience food discovery, restaurant search and online ordering
+from anywhere. This section demonstrates how a food-delivery
+application can promote its mobile experience.
+</p>
+
+<div class="app-buttons">
+    <a href="#" class="app-btn">▶ Google Play</a>
+    <a href="#" class="app-btn"> App Store</a>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div
+
