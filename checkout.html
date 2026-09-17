@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Checkout | Zomato Clone</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.checkout{
+    max-width:900px;
+    margin:auto;
+    padding:110px 7% 60px;
+}
+
+.checkout-box{
+    background:#fafafa;
+    padding:25px;
+    border-radius:12px;
+    margin-top:25px;
+}
+
+.checkout-box input,
+.checkout-box textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    margin:8px 0;
+    outline:0;
+}
+
+.checkout-box textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.payment-option{
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin:10px 0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header class="navbar" style="background:#e23744;position:fixed;">
+
+<a href="index.html" class="brand">zomato</a>
+
+<nav>
+<a href="cart.html">← Cart</a>
+</nav>
+
+</header>
+
+
+<main class="checkout">
+
+<h1>Checkout</h1>
+
+<div class="checkout-box">
+
+<h2>Delivery Details</h2>
+
+<input id="name"
+       type="text"
+       placeholder="Full Name">
+
+<input id="phone"
+       type="tel"
+       placeholder="Phone Number">
+
+<textarea id="address"
+          placeholder="Delivery Address"></textarea>
+
+</div>
+
+
+<div class="checkout-box">
+
+<h2>Payment Method</h2>
+
+<label class="payment-option">
+<input type="radio" name="payment" checked>
+ Cash on Delivery
+</label>
+
+<label class="payment-option">
+<input type="radio" name="payment">
+ UPI
+</label>
+
+<label class="payment-option">
+<input type="radio" name="payment">
+ Credit / Debit Card
+</label>
+
+<button class="primary-btn"
+        onclick="placeOrder()">
+    Place Order
+</button>
+
+</div>
+
+</main>
+
+
+<script src="js/checkout.js"></script>
+
+</body>
+
+</html>
